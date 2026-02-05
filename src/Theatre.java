@@ -3,52 +3,57 @@ import java.util.ArrayList;
 public class Theatre {
     public static void main(String[] args){
         ArrayList<Actor> actors = new ArrayList<>();
-        Actor actor1 = new Actor("Иван", "Петров", Person.PersonGender.MALE,
+        Actor actor1 = new Actor("Иван", "Петров", Person.Gender.MALE,
                 175);
         Actor actor2 = new Actor("Мария", "Сидорова",
-                Person.PersonGender.FEMALE, 165);
+                Person.Gender.FEMALE, 165);
         Actor actor3 = new Actor("Ольга", "Романова",
-                Person.PersonGender.FEMALE, 158);
+                Person.Gender.FEMALE, 158);
         actors.add(actor1);
         actors.add(actor2);
         actors.add(actor3);
 
         Director director1 = new Director("Елена", "Козлова",
-                Person.PersonGender.FEMALE, 2);
+                Person.Gender.FEMALE, 2);
         Director director2 = new Director("Сергей", "Михайлов",
-                Person.PersonGender.MALE, 2);
+                Person.Gender.MALE, 2);
 
-        Opera opera = new Opera("Кармен", 150, "Елена Козлова",
-                new ArrayList<>(), "Жорж Бизе", "Лиретто Кармен", 40);
+        Person choreographer = new Person("Дмитрий", "Соловьев",
+                Person.Gender.MALE);
+
+        Person musicAuthor = new Person("Жорж", "Бизе", Person.Gender.MALE);
+
+        Opera opera = new Opera("Кармен", 150, director1,
+                new ArrayList<>(), musicAuthor, "Лиретто Кармен", 40);
         Ballet ballet = new Ballet("Лебединое озеро", 140,
-                "Сергей Михайлов", new ArrayList<>(), "Жорж Бизе",
-                "Либретто балета", "Дмитрий Соловьев");
-        Show show = new Show("Ромео и Джульетта", 120, "Елена Козлова",
+                director2, new ArrayList<>(), musicAuthor,
+                "Либретто балета", choreographer);
+        Show show = new Show("Ромео и Джульетта", 120, director1,
                 new ArrayList<>());
 
-        opera.listOfActors.add(actor1);
-        ballet.listOfActors.add(actor3);
-        ballet.listOfActors.add(actor2);
-        show.listOfActors.add(actor2);
+        opera.getListOfActors().add(actor1);
+        ballet.getListOfActors().add(actor3);
+        ballet.getListOfActors().add(actor2);
+        show.getListOfActors().add(actor2);
 
         System.out.println("Опера " + opera.title + ": ");
-        opera.printActorList(opera.listOfActors);
+        opera.printActorList(opera.getListOfActors());
         System.out.println("Балет " + ballet.title + ": ");
-        ballet.printActorList(ballet.listOfActors);
+        ballet.printActorList(ballet.getListOfActors());
         System.out.println("Спектакль " + show.title + ": ");
-        show.printActorList(show.listOfActors);
+        show.printActorList(show.getListOfActors());
 
         System.out.println("Либретто для оперы: ");
         opera.printLibrettoText();
         System.out.println("Либретто для балета: ");
         ballet.printLibrettoText();
 
-        opera.setReplacActor(actor1, actor3);
+        opera.setReplacActor(actor1, actor3.getSurname());
         System.out.println("Опера " + opera.title + ": ");
-        opera.printActorList(opera.listOfActors);
+        opera.printActorList(opera.getListOfActors());
 
         Actor actor4 = new Actor("Антон", "Иванов",
-                Person.PersonGender.MALE, 180);
-        ballet.setReplacActor(actor4, actor2);
+                Person.Gender.MALE, 180);
+        ballet.setReplacActor(actor4, actor2.getSurname());
     }
 }
