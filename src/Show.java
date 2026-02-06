@@ -1,12 +1,10 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Show {
     protected String title;
-    private int duration;
-    private Director director;
-    private ArrayList<Actor> listOfActors = new ArrayList<>();
-    Scanner scanner = new Scanner(System.in);
+    protected int duration;
+    protected Director director;
+    protected ArrayList<Actor> listOfActors = new ArrayList<>();
 
 
     public Show(String title, int duration, Director director, ArrayList<Actor> listOfActors) {
